@@ -1,4 +1,4 @@
-# MORNING PLANNER BY VOLTRON
+# MORNING PLANNER BY VOLTRON <img alt="GitHub Actions status" src="https://github.com/cohyunoh/Planner-Project/workflows/Python%20application/badge.svg">
 
 ## ROSTER
  * CONNOR OH: project manager, bootstrap, reddit API
