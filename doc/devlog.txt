@@ -1,6 +1,10 @@
-#2019-11-18 8:13
+#2019-11-18 20:13
 Connor, Jun Tao, and Leia:
 Updated design doc based on suggestions
 - Fixed the component Map
 - Added more description for our data table
 - Added clarifications for sitemap
+
+#2019-11-19 14:17
+Jun Tao:
+Added Existing Flask Skeleton
