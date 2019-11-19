@@ -1,0 +1,6 @@
+#2019-11-18 8:13
+Connor, Jun Tao, and Leia:
+Updated design doc based on suggestions
+- Fixed the component Map
+- Added more description for our data table
+- Added clarifications for sitemap
