@@ -30,7 +30,7 @@ python3 -m venv venv
 
 ### 3. Install the necessary packages outlined in requirements.txt
 ```
-pip3 install -r <path-to-cloned-repo>/requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### 4. Run the Flask app
