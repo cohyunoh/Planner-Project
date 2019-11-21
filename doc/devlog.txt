@@ -16,3 +16,6 @@ Added Existing Flask Skeleton
 jun TaoL  -- 2019-11-20 19:38
 Jun Tao
 Implemented Google Sigin
+
+leiaP -- 2019-11-20 22:38
+Added primitive version of homepage.html
