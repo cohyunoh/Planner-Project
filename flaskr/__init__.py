@@ -1,25 +1,40 @@
 """
-    This is the init script for flaskr.
+    Initialize a Flask instance
 """
-from os import urandom
+from os import urandom, path
+from .utl import login_check
+from .google_inert import GOOGLE, fetch_calendar
 from flask import Flask, render_template, session, redirect, url_for
-from .google import GOOGLE
-from .utl.pdecorators.flask_decorators import login_check
 
 APP = Flask(__name__)
 
 APP.secret_key = urandom(32)
 
+if not path.exists("flaskr/data/database.db"):
+    with open("flaskr/data/database.db", "w+") as f:
+        f.close()
+
+APP.config.from_mapping(DATABASE="data/database.db")
+
 APP.register_blueprint(GOOGLE)
 
 
 @APP.route("/")
-@login_check
 def index():
+    """
+        Index routes the app to public views or protected
+        views.
+    """
+    if "user" in session:
+        return redirect(url_for("home"))
     return render_template("index.html")
 
 
 @APP.route("/home")
 @login_check
 def home():
-    return render_template("home.html")
+    """
+        Renders the homepage
+    """
+    calendar_ = fetch_calendar()
+    return render_template("home.html", calendar=calendar_)

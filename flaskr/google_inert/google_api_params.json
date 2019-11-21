@@ -1,0 +1,22 @@
+{
+  "google_auth_request_params": {
+    "response_type": "code",
+    "scope": "email\u0020profile\u0020openid\u0020https://www.googleapis.com/auth/calendar\u0020https://www.googleapis.com/auth/tasks",
+    "redirect_uri": "http://localhost:5000/google/oauth2",
+    "prompt": "consent",
+    "nonce": true
+  },
+  "google_auth_callback_params": {
+    "redirect_uri": "http://localhost:5000/google/oauth2",
+    "grant_type": "authorization_code"
+  },
+  "google_calendar": {
+    "endpoint": "https://www.googleapis.com/calendar/v3/calendars"
+  },
+  "google_tasks": {
+    "endpoint": "https://www.googleapis.com/tasks/v1"
+  },
+  "google_maps": {
+    "endpoint": "https://www.google.com/maps/embed/v1"
+  }
+}
