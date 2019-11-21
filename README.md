@@ -14,20 +14,26 @@ We are making a website that acts as a planner you look at every morning to get 
 
 ## How To Run:
 
-### 1.Clone:
-```bash
-$ git@github.com:cohyunoh/Planner-Project.git
-```
-### 2. open your virtual environment
+### 0. Make sure python3 and pip3 are installed.
 
-### 3. Install Required pip3 installs
-```bash
-<venv>$ pip install -r <path-to-cloned-repo>/requirements.txt
+### 1. Clone
+```
+git clone https://github.com/cohyunoh/Planner-Project.git
 ```
 
-### 4. How to Run:
-```bash
-<venv>$ cd <name of cloned directory>
-<venv>/<name of cloned directory>$ python3 app.py 
+### 2. Activate your virtual environment
+```
+cd Planner-Project
+python3 -m venv venv \
+. venv/bin/activate
 ```
 
+### 3. Install the necessary packages outlined in requirements.txt
+```
+pip3 install -r <path-to-cloned-repo>/requirements.txt
+```
+
+### 4. Run the Flask app
+```
+python3 app.py 
+```
