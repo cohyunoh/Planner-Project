@@ -14,6 +14,9 @@ We are making a website that acts as a planner you look at every morning to get 
 
 ## How To Run:
 
+### -1. You don't have the creds.json, you don't have any credentials. Therefore, it will fail.
+* You need to go console.cloud.google.com to obtain your client id and client secrets.
+
 ### 0. Make sure python3 and pip3 are installed.
 
 ### 1. Clone
