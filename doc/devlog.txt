@@ -13,9 +13,11 @@ Updated design doc based on suggestions
 jun TaoL -- 2019-11-19 14:17
 Added Existing Flask Skeleton
 
-jun TaoL  -- 2019-11-20 19:38
+jun TaoL -- 2019-11-20 19:38
 Jun Tao
 Implemented Google Sigin
 
 leiaP -- 2019-11-20 22:38
 Added primitive version of homepage.html
+
+jun Tao -- 2019-11-21 14:22
