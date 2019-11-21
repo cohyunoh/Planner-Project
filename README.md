@@ -21,19 +21,29 @@ We are making a website that acts as a planner you look at every morning to get 
 git clone https://github.com/cohyunoh/Planner-Project.git
 ```
 
-### 2. Activate your virtual environment
+### 2. Pull from GitHub Submodule
+```
+git submodule update --init --recursive
+```
+
+### 3. Activate your virtual environment
 ```
 cd Planner-Project
 python3 -m venv venv
 . venv/bin/activate
 ```
 
-### 3. Install the necessary packages outlined in requirements.txt
+### 4. Install the necessary packages outlined in requirements.txt
 ```
 pip3 install -r requirements.txt
 ```
 
-### 4. Run the Flask app
+### 5. Run the Flask app
 ```
 python3 run.py 
+```
+
+### 6. Update from GitHub Submodule if needed
+```
+git submodule update --recursive --remote
 ```
