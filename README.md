@@ -23,8 +23,8 @@ git clone https://github.com/cohyunoh/Planner-Project.git
 
 ### 2. Activate your virtual environment
 ```
-cd Planner-Project \
-python3 -m venv venv \
+cd Planner-Project
+python3 -m venv venv
 . venv/bin/activate
 ```
 
