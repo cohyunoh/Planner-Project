@@ -11,11 +11,11 @@ setup(name="Planner Flask App",
       author="Jun Tao Lei, Connor Oh, Leia Park",
       description="A Planner Built With Flask",
       long_description=long_description,
-      long_description_content_type="text/markdown"
+      long_description_content_type="text/markdown",
       url="https://github.com/cohyunoh/Planner-Project.git",
       packages=find_packages(),
       classifiers=[
-        "Programming Language :: Python :: 3",
-        "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Operating System :: OS Independent",
       ],
       python_requires=">=3.8")
