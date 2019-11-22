@@ -13,7 +13,7 @@ We are making a website that acts as a planner you look at every morning to get 
 * Shows top posts on from a Reddit subreddit, default to a news related subreddit
 * Shows your commute and what traffic lies ahead
 
-##APIS Used:
+## APIS Used:
 * Google Calender API: https://docs.google.com/document/d/1atMCAui86AwBSWEz8lCIJFaNkUL4V5fwVecNcnxSpP0/edit
 * Google Tasks API: https://docs.google.com/document/d/1AxGWZziRmWGfXmMuuxaUzVqP4-9Cn9GkN3X8Qn-0888/edit#
 * Google Maps Embedded API: https://docs.google.com/document/d/1BrK8KIi1jxdETaGoEcuEB_UDiGwZhFFeWxZ_dlwiFww/edit#heading=h.gkfplvc4i8hr
