@@ -25,6 +25,8 @@ def index():
         Index routes the app to public views or protected
         views.
     """
+    if not path.exists("creds.json"):
+        return "No credentials found for this Flask app. Check out the readme for instructions."
     if "user" in session:
         return redirect(url_for("home"))
     return render_template("index.html")
