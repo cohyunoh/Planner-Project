@@ -13,11 +13,17 @@ We are making a website that acts as a planner you look at every morning to get 
 * Shows top posts on from a Reddit subreddit, default to a news related subreddit
 * Shows your commute and what traffic lies ahead
 
+##APIS Used:
+* Google Calender API: https://docs.google.com/document/d/1atMCAui86AwBSWEz8lCIJFaNkUL4V5fwVecNcnxSpP0/edit
+* Google Tasks API:
+* Google Maps Embedded API:
+* Reddit API: https://docs.google.com/document/d/1YvhzlfshJvUZ_7GWKKUiI0KUppHE-Ee_l4Xp3jMJuFc/edit
+
 ## How To Run:
 
 ### -1. This Flask application requires credentials in order to run properly.
 > Since this Flask application uses OAuth2.0 to access Google APIs, the application needs to have a client ID and a client secret issued by Google. This is necessary as the credentials allow Google to identify the application and lets end users authenticate the application. If you want to test this application, please refer to the following directions.
-    
+
 1. Obtain a Google account if you do not have one.
 2. Go to your Google Cloud Console.
 3. Create a project.
@@ -31,7 +37,7 @@ We are making a website that acts as a planner you look at every morning to get 
   "google_client_secret": "your_client_secret"
 }
 ```
-    
+
 
 ### 0. Make sure python3 and pip3 are installed.
 
@@ -59,7 +65,7 @@ pip3 install -r requirements.txt
 
 ### 5. Run the Flask app
 ```
-python3 run.py 
+python3 run.py
 ```
 
 ### 6. Update from GitHub Submodule if needed
