@@ -19,7 +19,7 @@ Implemented application signin through OAuth2 and OpenID Connect
 leiaP -- 2019-11-20 22:38
 Added primitive version of homepage.html
 
-jun Tao -- 2019-11-21 14:22
+jun TaoL -- 2019-11-21 14:22
 Made a very rudimentary integration with Google Calendar
 
 leiaP -- 2019-11-21 22:41
