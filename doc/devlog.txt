@@ -27,7 +27,7 @@ Implemented bootstrap to base.html
 Edited home.html with homepage.html content
 Pushed in separate folder "templates2.0" for testing
 
-jun TaoL, connorO, leiaP -- 2019-11-18 23:53
+jun TaoL, connorO, leiaP -- 2019-11-21 23:53
 Connor, Jun Tao, and Leia:
 Updated design doc based on suggestions
 - Redrew the database diagram based on new insights
