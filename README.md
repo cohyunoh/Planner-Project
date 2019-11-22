@@ -48,12 +48,12 @@ git clone https://github.com/cohyunoh/Planner-Project.git
 
 ### 2. Pull from GitHub Submodule
 ```
+cd Planner-Project
 git submodule update --init --recursive
 ```
 
 ### 3. Activate your virtual environment
 ```
-cd Planner-Project
 python3 -m venv venv
 . venv/bin/activate
 ```
