@@ -8,14 +8,14 @@
 
 ## What Is It?
 We are making a website that acts as a planner you look at every morning to get your day started
-* shows the date
-* shows tasks and reminders, which can be added on to
-* shows top posts on Reddit News
-* shows your commute and what traffic lies ahead
+* Shows the date
+* Shows tasks and reminders, which can be modified
+* Shows top posts on from a Reddit subreddit, default to a news related subreddit
+* Shows your commute and what traffic lies ahead
 
 ## How To Run:
 
-### -1. This Flask application requires credentials in order to run properly
+### -1. This Flask application requires credentials in order to run properly.
 > Since this Flask application uses OAuth2.0 to access Google APIs, the application needs to have a client ID and a client secret issued by Google. This is necessary as the credentials allow Google to identify the application and lets end users authenticate the application. If you want to test this application, please refer to the following directions.
     
 1. Obtain a Google account if you do not have one.
