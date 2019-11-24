@@ -1,32 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<ul class="nav justify-content-end mt-1 mr-3">
+<ul class="nav justify-content-end">
   <li class="nav-item">
-    <a class="nav-link" href="/">Settings</a>
+    <form action="/settings" method="GET">
+      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Settings</button>
+    </form>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/">Logout</a>
+    <form action="/logout" method="GET">
+      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Logout</button>
+    </form>
   </li>
 </ul>
-<div class="container">
+<div class="container mb-3">
   <h3>Calendar</h3>
   <div class="list-group">
     {% for event in calendar %}
-    <li href="#" class="list-group-item">
-      {{ event.summary }}
+    <li href="{{ event['htmlLink'] }}" class="list-group-item list-group-item-action">
+      {{ event["summary"] }}
     </li>
     {% endfor %}
   </div>
 </div>
-<div class="container">
+<div class="container mb-3">
   <h3>Tasks</h3>
+  {% for taskchain in tasks %}
+  {% if "items" in taskchain %}
   <div class="list-group">
-    {% for task in tasks %}
-    <a href="#" class="list-group-item list-group-item-action">Placeholder</a>
+    {% for task in taskchain["items"] %}
+    <a href="{{ task['selfLink'] }}" class="list-group-item list-group-item-action">
+      {{ task["title"] }}
+    </a>
     {% endfor %}
   </div>
+  {% endif %}
+  {% endfor %}
 </div>
-<div class="container">
+<div class="container mb-3">
   <h3>News</h3>
   <div class="list-group">
     {% for article in news %}

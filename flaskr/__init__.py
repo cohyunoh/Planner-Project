@@ -3,7 +3,7 @@
 """
 from os import urandom, path
 from .utl import login_check
-from .google_inert import GOOGLE, fetch_calendar_events
+from .google_inert import GOOGLE, fetch_calendar_events, fetch_tasks
 from flask import Flask, render_template, session, redirect, url_for
 
 APP = Flask(__name__)
@@ -38,5 +38,13 @@ def home():
     """
         Renders the homepage
     """
-    calendar_events = fetch_calendar_events()
-    return render_template("home.html", calendar=calendar_events)
+    calendar_events = fetch_calendar_events()["items"]
+    tasks = fetch_tasks()
+    return render_template("home.html", calendar=calendar_events, tasks=tasks)
+
+
+@APP.route("/logout")
+@login_check
+def logout():
+    session.pop("user", None)
+    return redirect("/")

@@ -4,32 +4,35 @@ P #01 — ArRESTed Development
 2019-11-18
 
 jun TaoL, connorO, leiaP -- 2019-11-18 20:13
-Connor, Jun Tao, and Leia:
-Updated design doc based on suggestions
-- Fixed the component Map
-- Added more description for our data table
-- Added clarifications for sitemap
+  Updated design doc based on suggestions
+  - Fixed the component Map
+  - Added more description for our data table
+  - Added clarifications for sitemap
 
 jun TaoL -- 2019-11-19 14:17
-Added Existing Flask Skeleton
+  Added Existing Flask Skeleton
 
 jun TaoL -- 2019-11-20 19:38
-Implemented application signin through OAuth2 and OpenID Connect
+  Implemented application signin through OAuth2 and OpenID Connect
 
 leiaP -- 2019-11-20 22:38
-Added primitive version of homepage.html
+  Added primitive version of homepage.html
 
 jun TaoL -- 2019-11-21 14:22
-Made a very rudimentary integration with Google Calendar
+  Made a very rudimentary integration with Google Calendar
 
 leiaP -- 2019-11-21 22:41
-Implemented bootstrap to base.html
-Edited home.html with homepage.html content
-Pushed in separate folder "templates2.0" for testing
+  Implemented bootstrap to base.html
+  Edited home.html with homepage.html content
+  Pushed in separate folder "templates2.0" for testing
 
 jun TaoL, connorO, leiaP -- 2019-11-21 23:53
-Connor, Jun Tao, and Leia:
-Updated design doc based on suggestions
-- Redrew the database diagram based on new insights
-- Redrew the component maps and site map based on new insights.
-- Fixed expression errors
+  Updated design doc based on suggestions
+  - Redrew the database diagram based on new insights
+  - Redrew the component maps and site map based on new insights.
+  - Fixed expression errors
+
+jun TaoL -- 2019-11-24 10:21
+  Integrated with Google Tasks
+  Edited base.html, index.html, and home.html for testing
+  Resolved templates mergin

@@ -11,12 +11,12 @@
     "grant_type": "authorization_code"
   },
   "google_calendar": {
-    "endpoint": "https://www.googleapis.com/calendar/v3/calendars"
+    "url": "https://www.googleapis.com/calendar/v3/calendars"
   },
   "google_tasks": {
-    "endpoint": "https://www.googleapis.com/tasks/v1"
+    "url": "https://www.googleapis.com/tasks/v1"
   },
   "google_maps": {
-    "endpoint": "https://www.google.com/maps/embed/v1"
+    "url": "https://www.google.com/maps/embed/v1"
   }
 }
