@@ -1,4 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<a href="/google/oauth2">Sign in with Google</a>
+<div class="container mt-5">
+  <h1 class="display-4">Get Started With My Planner</h1>
+  <hr>
+  <form action="/google/oauth2" method="GET">
+    <button class="btn btn-lg btn-outline-primary" type="submit">Sign in with Google</button>
+  </form>
+</div>
 {% endblock %}

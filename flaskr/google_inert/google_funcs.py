@@ -13,12 +13,12 @@ with open("flaskr/google_inert/google_api_params.json") as g:
 
 
 @login_check
-def fetch_calendar(calendarId="primary"):
+def fetch_calendar_events(calendarId="primary"):
     assert session["user"]["access_token"]
     google_calendar_endpoint = super_params["google_calendar"]["endpoint"]
     token = session["user"]["access_token"]
     request_ = Request(google_calendar_endpoint + "/" + calendarId +
-                       "?access_token=" + token)
+                       "/events" + "?access_token=" + token)
     return loads(urlopen(request_).read())
 
 

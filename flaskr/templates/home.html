@@ -1,5 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-You are at home.
-{{ calendar }}
+<ul class="nav justify-content-end mt-1 mr-3">
+  <li class="nav-item">
+    <a class="nav-link" href="/">Settings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/">Logout</a>
+  </li>
+</ul>
+<div class="container">
+  <h3>Calendar</h3>
+  <div class="list-group">
+    {% for event in calendar %}
+    <li href="#" class="list-group-item">
+      {{ event.summary }}
+    </li>
+    {% endfor %}
+  </div>
+</div>
+<div class="container">
+  <h3>Tasks</h3>
+  <div class="list-group">
+    {% for task in tasks %}
+    <a href="#" class="list-group-item list-group-item-action">Placeholder</a>
+    {% endfor %}
+  </div>
+</div>
+<div class="container">
+  <h3>News</h3>
+  <div class="list-group">
+    {% for article in news %}
+    <a href="#" class="list-group-item list-group-item-action">Placeholder</a>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

@@ -3,7 +3,7 @@
 """
 from os import urandom, path
 from .utl import login_check
-from .google_inert import GOOGLE, fetch_calendar
+from .google_inert import GOOGLE, fetch_calendar_events
 from flask import Flask, render_template, session, redirect, url_for
 
 APP = Flask(__name__)
@@ -29,7 +29,7 @@ def index():
         return "No credentials found for this Flask app. Check out the readme for instructions."
     if "user" in session:
         return redirect(url_for("home"))
-    return render_template("index.html")
+    return render_template("index.html", is_logged_in=False)
 
 
 @APP.route("/home")
@@ -38,5 +38,5 @@ def home():
     """
         Renders the homepage
     """
-    calendar_ = fetch_calendar()
-    return render_template("home.html", calendar=calendar_)
+    calendar_events = fetch_calendar_events()
+    return render_template("home.html", calendar=calendar_events)
