@@ -33,6 +33,7 @@ jun TaoL, connorO, leiaP -- 2019-11-21 23:53
   - Fixed expression errors
 
 jun TaoL -- 2019-11-24 10:21
+  Updated Google Calendar integration
   Integrated with Google Tasks
   Edited base.html, index.html, and home.html for testing
   Resolved templates mergin
