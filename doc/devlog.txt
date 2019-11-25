@@ -31,6 +31,9 @@ jun TaoL, connorO, leiaP -- 2019-11-21 23:53
   - Redrew the database diagram based on new insights
   - Redrew the component maps and site map based on new insights.
   - Fixed expression errors
+  Response to Egoless Programming
+  1. Try to view code less as an extension of oneself, rather as simply code. Thus, we should try to review each other's code and ask questions about certain design choices within the code.
+  2. Learn to ask for help when needed, and don't take the discovery of bugs in one's program personally.
 
 jun TaoL -- 2019-11-24 10:21
   Updated Google Calendar integration
