@@ -3,6 +3,13 @@ SoftDev1 pd9
 P #01 — ArRESTed Development
 2019-11-18
 
+HOME STRETCH PLAN:
+  1. Complete settings and figure out how it will work with other google pages
+  2. Implement Reddit API
+  3. Work on bootstrap
+    - Just do some more reworking
+  4. Figure out calender pulls from last year instead of this year
+
 jun TaoL, connorO, leiaP -- 2019-11-18 20:13
   Updated design doc based on suggestions
   - Fixed the component Map
