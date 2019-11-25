@@ -40,3 +40,6 @@ jun TaoL -- 2019-11-24 10:21
   Integrated with Google Tasks
   Edited base.html, index.html, and home.html for testing
   Resolved templates mergin
+
+jun TaoL --2019-11-25 12:23
+  Started database functions

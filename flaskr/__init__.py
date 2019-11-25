@@ -2,9 +2,9 @@
     Initialize a Flask instance
 """
 from os import urandom, path
-from .utl import login_check
+from .utl import login_check, conn, close
 from .google_inert import GOOGLE, fetch_calendar_events, fetch_tasks
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, g
 
 APP = Flask(__name__)
 
@@ -17,6 +17,22 @@ if not path.exists("flaskr/data/database.db"):
 APP.config.from_mapping(DATABASE="data/database.db")
 
 APP.register_blueprint(GOOGLE)
+
+with APP.app_context():
+    conn()
+    with APP.open_resource("flaskr/schema.sql") as f:
+        g.db.executescript(f.read().decode("utf8"))
+    close()
+
+
+@APP.before_request
+def database_connection():
+    conn()
+
+
+@APP.teardown_request
+def close_database_connection(Exception):
+    close()
 
 
 @APP.route("/")

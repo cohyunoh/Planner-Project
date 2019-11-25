@@ -7,7 +7,7 @@ from json import load, loads
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Blueprint, session, redirect
-from ..utl import register, google, login_check
+from ..utl import register, google, login_check, check_user, add_user
 
 creds = {}
 
