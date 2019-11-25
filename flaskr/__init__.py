@@ -20,7 +20,7 @@ APP.register_blueprint(GOOGLE)
 
 with APP.app_context():
     conn()
-    with APP.open_resource("flaskr/schema.sql") as f:
+    with APP.open_resource("schema.sql") as f:
         g.db.executescript(f.read().decode("utf8"))
     close()
 
