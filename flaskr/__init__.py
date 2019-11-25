@@ -14,7 +14,7 @@ if not path.exists("flaskr/data/database.db"):
     with open("flaskr/data/database.db", "w+") as f:
         f.close()
 
-APP.config.from_mapping(DATABASE="data/database.db")
+APP.config.from_mapping(DATABASE="flaskr/data/database.db")
 
 APP.register_blueprint(GOOGLE)
 
