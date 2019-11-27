@@ -1,7 +1,8 @@
 """
     Initialize a Flask instance
 """
-from os import urandom, path
+from os import urandom
+from sqlite3 import connect
 from .utl import login_check, conn, close
 from .google_inert import GOOGLE, fetch_calendar_events, fetch_tasks
 from flask import Flask, render_template, session, redirect, url_for, g
@@ -10,19 +11,15 @@ APP = Flask(__name__)
 
 APP.secret_key = urandom(32)
 
-if not path.exists("flaskr/data/database.db"):
-    with open("flaskr/data/database.db", "w+") as f:
-        f.close()
-
 APP.config.from_mapping(DATABASE="flaskr/data/database.db")
 
-APP.register_blueprint(GOOGLE)
+with open("flaskr/data/database.db", "w+") as f:
+    db = connect(APP.config["DATABASE"])
+    db.executescript(f.read())
+    db.close()
+    f.close()
 
-with APP.app_context():
-    conn()
-    with APP.open_resource("schema.sql") as f:
-        g.db.executescript(f.read().decode("utf8"))
-    close()
+APP.register_blueprint(GOOGLE)
 
 
 @APP.before_request
@@ -41,8 +38,6 @@ def index():
         Index routes the app to public views or protected
         views.
     """
-    if not path.exists("creds.json"):
-        return "No credentials found for this Flask app. Check out the readme for instructions."
     if "user" in session:
         return redirect(url_for("home"))
     return render_template("index.html", is_logged_in=False)
@@ -57,6 +52,12 @@ def home():
     calendar_events = fetch_calendar_events()["items"]
     tasks = fetch_tasks()
     return render_template("home.html", calendar=calendar_events, tasks=tasks)
+
+
+@APP.route("/settings")
+@login_check
+def settings():
+    return render_template("settings.html")
 
 
 @APP.route("/logout")

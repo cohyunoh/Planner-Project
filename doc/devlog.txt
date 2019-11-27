@@ -48,7 +48,7 @@ jun TaoL -- 2019-11-24 10:21
   Edited base.html, index.html, and home.html for testing
   Resolved templates mergin
 
-jun TaoL --2019-11-25 12:23
+jun TaoL -- 2019-11-25 12:23
   Started database functions
 
 leiaP -- 2019-11-26 20:43

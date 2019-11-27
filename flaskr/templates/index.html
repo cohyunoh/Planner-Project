@@ -1,8 +1,18 @@
 {% extends "base.html" %}
+{% block title %}Login{% endblock %}
 {% block content %}
 <div class="container mt-5">
   <h1 class="display-4">Get Started With My Planner</h1>
   <hr>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li> {{ message }} </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
   <form action="/google/oauth2" method="GET">
     <button class="btn btn-lg btn-outline-primary" type="submit">Sign in with Google</button>
   </form>

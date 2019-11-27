@@ -7,7 +7,7 @@ from urllib.parse import urlencode
 from flask import session, redirect
 from urllib.request import Request, urlopen
 
-with open("flaskr/google_inert/google_api_params.json") as g:
+with open("flaskr/google_inert/parameters/google_api_params.json") as g:
     super_params = load(g)
     g.close()
 
