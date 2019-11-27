@@ -53,3 +53,10 @@ jun TaoL --2019-11-25 12:23
 
 leiaP -- 2019-11-26 20:43
   Added settings.html to templates
+
+connorO -- 2019-11-26 21:25
+  Updated design doc:
+  - Component map updated to show a more accurate version to what we have
+    - took out the reminders since that is infused with Google calendar
+  -Updated what the user can do and took out the importance of reminders since the API already does that for us
+  Made QAF Post and took notes on OAUTH2 in notebook
