@@ -2,7 +2,9 @@
     Initialize a Flask instance
 """
 from os import urandom
+from datetime import date
 from sqlite3 import connect
+from .reddit import get_posts
 from .utl import login_check, conn, close, change_user_settings, get_from_user
 from flask import Flask, render_template, session, redirect, url_for, g, request
 from .google_inert import GOOGLE, fetch_calendar_events, fetch_tasks, fetch_userinfo
@@ -65,9 +67,18 @@ def home():
     """
         Renders the homepage
     """
+    datetime = date.today()
+    name = get_from_user(session["user"]["email"], "name")
     calendar_events = fetch_calendar_events()["items"]
     tasks = fetch_tasks()
-    return render_template("home.html", calendar=calendar_events, tasks=tasks)
+    news = get_posts(get_from_user(session["user"]["email"], "newsPreference"),
+                     "top", 5)
+    return render_template("home.html",
+                           datetime=datetime,
+                           name=name,
+                           calendar=calendar_events,
+                           tasks=tasks,
+                           news=news)
 
 
 @APP.route("/settings")

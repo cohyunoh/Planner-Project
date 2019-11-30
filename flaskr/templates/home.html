@@ -13,36 +13,47 @@
     </form>
   </li>
 </ul>
-<div class="container mb-3">
-  <h3>Calendar</h3>
-  <div class="list-group">
-    {% for event in calendar %}
-    <li href="{{ event['htmlLink'] }}" class="list-group-item list-group-item-action">
-      {{ event["summary"] }}
-    </li>
-    {% endfor %}
+<div class="jumbotron jumbotron-fluid mt-3">
+  <div class="container">
+    <h1 class="display-4">Today is {{ datetime.strftime("%Y-%m-%d") }}</h1>
+    <hr class="my-4">
+    <p class="lead">Welcome back {{ name }}!</p>
   </div>
 </div>
-<div class="container mb-3">
-  <h3>Tasks</h3>
-  {% for taskchain in tasks %}
-  {% if "items" in taskchain %}
-  <div class="list-group">
-    {% for task in taskchain["items"] %}
-    <a href="{{ task['selfLink'] }}" class="list-group-item list-group-item-action">
-      {{ task["title"] }}
-    </a>
+<div class="row mx-3">
+  <div class="container mb-3 col-sm">
+    <h3>Calendar</h3>
+    <div class="list-group">
+      {% for event in calendar %}
+      <li href="{{ event['htmlLink'] }}" class="list-group-item list-group-item-action">
+        {{ event["summary"] }}
+      </li>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container mb-3 col-sm">
+    <h3>Tasks</h3>
+    {% for taskchain in tasks %}
+    {% if "items" in taskchain %}
+    <div class="list-group">
+      {% for task in taskchain["items"] %}
+      <a href="{{ task['selfLink'] }}" class="list-group-item list-group-item-action">
+        {{ task["title"] }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
     {% endfor %}
   </div>
-  {% endif %}
-  {% endfor %}
-</div>
-<div class="container mb-3">
-  <h3>News</h3>
-  <div class="list-group">
-    {% for article in news %}
-    <a href="#" class="list-group-item list-group-item-action">Placeholder</a>
-    {% endfor %}
+  <div class="container mb-3 col-sm">
+    <h3>News</h3>
+    <div class="list-group">
+      {% for article in news["data"]["children"] %}
+      <a href="{{ article['data']['url'] }}" class="list-group-item list-group-item-action">
+        {{ article["data"]["title"] }}
+      </a>
+      {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock %}

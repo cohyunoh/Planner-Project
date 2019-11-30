@@ -1,0 +1,1 @@
+from .reddit_funcs import get_posts

@@ -66,3 +66,6 @@ jun taoL -- 2019-11-30 15:47
   Added registration.html
   Integrate registration for first time user
   Integrate settings with database
+
+jun taoL -- 2019-11-30 16:57
+  Implemented basic home design layout with Reddit
