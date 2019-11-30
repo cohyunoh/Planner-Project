@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block content %}
+<div class="container border border-primary text-primary p-5 my-5 rounded-lg">
+  <div class="py-3">
+    <h1>Finish your registration</h1>
+  </div>
+  <form action="/register">
+    <h3 name="registration">News Preference</h3>
+    <div class="form-group">
+      <select name="inputNews" class="form-control border-primary text-primary">
+        <option>Politics</option>
+        <option>World News</option>
+      </select>
+    </div>
+    <h3 class="mt-5">Home Address</h3>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control border-primary text-primary" name="homeAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control border-primary text-primary" name="homeAddress2"
+        placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control border-primary text-primary" name="homeCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <input type="text" class="form-control border-primary text-primary" name="homeState">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control border-primary text-primary" name="homeZip">
+      </div>
+    </div>
+    <h3 class="mt-5">Work Address</h3>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control border-primary text-primary" name="workAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control border-primary text-primary" name="workAddress2"
+        placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control border-primary text-primary" name="workCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <input type="text" class="form-control border-primary text-primary" name="workState">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control border-primary text-primary" name="workZip">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-5">Finish</button>
+  </form>
+</div>
+{% endblock %}
