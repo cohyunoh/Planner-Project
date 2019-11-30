@@ -39,11 +39,18 @@ We are making a website that acts as a planner you look at every morning to get 
   1. When you create an OAuth client ID or click on an existing OAuth client ID, you should see a section labelled "Authorized redirect URIs".
   2. Enter the following redirect URI if you are testing on a local computer using localhost: http://localhost:5000/google/oauth2.
 ```
-7. Create a creds.json file or rename the creds_example.json file to creds.json and place it in the project main/root directory. Be sure to use the following format. Replace "your_client_id" with the correct OAuth client ID, and replace "your_client_secret" with the corresponding client secret.
+7. Set the following environment variables. Be sure to use the following format for the correct operating systems. Replace "your_client_id" with the correct OAuth client ID, and replace "your_client_secret" with the corresponding client secret.
 ```
 {
-  "google_client_id": "your_client_id",
-  "google_client_secret": "your_client_secret"
+  For POSIX
+  ---------
+  export GOOGLE_CLIENT_ID="your_client_id"
+  export GOOGLE_CLIENT_SECRET="your_client_secret"
+
+  For Windows
+  -----------
+  set GOOGLE_CLIENT_ID="your_client_id"
+  set GOOGLE_CLIENT_SECRET="your_client_secret"
 }
 ```
 

@@ -10,13 +10,16 @@
     "redirect_uri": "http://localhost:5000/google/oauth2",
     "grant_type": "authorization_code"
   },
+  "google_userinfo": {
+    "endpoint": "https://openidconnect.googleapis.com/v1/userinfo"
+  },
   "google_calendar": {
-    "url": "https://www.googleapis.com/calendar/v3/calendars"
+    "endpoint": "https://www.googleapis.com/calendar/v3/calendars"
   },
   "google_tasks": {
-    "url": "https://www.googleapis.com/tasks/v1"
+    "endpoint": "https://www.googleapis.com/tasks/v1"
   },
   "google_maps": {
-    "url": "https://www.google.com/maps/embed/v1"
+    "endpoint": "https://www.google.com/maps/embed/v1"
   }
 }

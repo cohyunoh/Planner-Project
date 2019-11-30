@@ -10,22 +10,22 @@ HOME STRETCH PLAN:
     - Just do some more reworking
   4. Figure out calender pulls from last year instead of this year
 
-jun TaoL, connorO, leiaP -- 2019-11-18 20:13
+jun taoL, connorO, leiaP -- 2019-11-18 20:13
   Updated design doc based on suggestions
   - Fixed the component Map
   - Added more description for our data table
   - Added clarifications for sitemap
 
-jun TaoL -- 2019-11-19 14:17
+jun taoL -- 2019-11-19 14:17
   Added Existing Flask Skeleton
 
-jun TaoL -- 2019-11-20 19:38
+jun taoL -- 2019-11-20 19:38
   Implemented application signin through OAuth2 and OpenID Connect
 
 leiaP -- 2019-11-20 22:38
   Added primitive version of homepage.html
 
-jun TaoL -- 2019-11-21 14:22
+jun taoL -- 2019-11-21 14:22
   Made a very rudimentary integration with Google Calendar
 
 leiaP -- 2019-11-21 22:41
@@ -33,7 +33,7 @@ leiaP -- 2019-11-21 22:41
   Edited home.html with homepage.html content
   Pushed in separate folder "templates2.0" for testing
 
-jun TaoL, connorO, leiaP -- 2019-11-21 23:53
+jun taoL, connorO, leiaP -- 2019-11-21 23:53
   Updated design doc based on suggestions
   - Redrew the database diagram based on new insights
   - Redrew the component maps and site map based on new insights.
@@ -42,13 +42,13 @@ jun TaoL, connorO, leiaP -- 2019-11-21 23:53
   1. Try to view code less as an extension of oneself, rather as simply code. Thus, we should try to review each other's code and ask questions about certain design choices within the code.
   2. Learn to ask for help when needed, and don't take the discovery of bugs in one's program personally.
 
-jun TaoL -- 2019-11-24 10:21
+jun taoL -- 2019-11-24 10:21
   Updated Google Calendar integration
   Integrated with Google Tasks
   Edited base.html, index.html, and home.html for testing
   Resolved templates mergin
 
-jun TaoL --2019-11-25 12:23
+jun taoL -- 2019-11-25 12:23
   Started database functions
 
 leiaP -- 2019-11-26 20:43
@@ -60,3 +60,9 @@ connorO -- 2019-11-26 21:25
     - took out the reminders since that is infused with Google calendar
   -Updated what the user can do and took out the importance of reminders since the API already does that for us
   Made QAF Post and took notes on OAUTH2 in notebook
+
+jun taoL -- 2019-11-30 15:47
+  Updated settings.html
+  Added registration.html
+  Integrate registration for first time user
+  Integrate settings with database
