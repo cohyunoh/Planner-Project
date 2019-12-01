@@ -2,9 +2,10 @@
     Initialize a Flask instance
 """
 from os import urandom
-from datetime import date
+from time import sleep
 from sqlite3 import connect
 from .reddit import get_posts
+from datetime import date, datetime
 from .utl import login_check, conn, close, change_user_settings, get_from_user
 from flask import Flask, render_template, session, redirect, url_for, g, request
 from .google_inert import GOOGLE, fetch_calendar_events, fetch_tasks, fetch_userinfo
@@ -93,6 +94,7 @@ def settings():
                                  "workAddress").split(",")
     news_preference = get_from_user(session["user"]["email"], "newsPreference")
     return render_template("settings.html",
+                           news_preference=news_preference,
                            home_address=home_address[0],
                            home_address2=home_address[1],
                            home_city=home_address[2],
@@ -121,15 +123,19 @@ def change_settings():
         request.args["workCity"], request.args["workState"],
         request.args["workZip"]
     ]
-    success = change_user_settings(session["user"]["email"],
-                                   ",".join(home_address),
-                                   ",".join(work_address),
-                                   request.args["inputNews"])
-    if "registration" in request.args and not success:
-        return redirect(url_for("registration"))
-    elif "settings" in request.args:
+    change_user_settings(session["user"]["email"], ",".join(home_address),
+                         ",".join(work_address), request.args["inputNews"])
+    if "settings" in request.args:
         return redirect(url_for("settings"))
     return redirect(url_for("index"))
+
+
+@APP.route("/news")
+@login_check
+def news():
+    news = get_posts(get_from_user(session["user"]["email"], "newsPreference"),
+                     "top", 15)
+    return render_template("news.html", news=news)
 
 
 @APP.route("/logout")

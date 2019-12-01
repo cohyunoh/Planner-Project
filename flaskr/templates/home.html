@@ -3,6 +3,11 @@
 {% block content %}
 <ul class="nav justify-content-end">
   <li class="nav-item">
+    <form action="/news" method="GET">
+      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">News</button>
+    </form>
+  </li>
+  <li class="nav-item">
     <form action="/settings" method="GET">
       <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Settings</button>
     </form>
@@ -21,38 +26,49 @@
   </div>
 </div>
 <div class="row mx-3">
-  <div class="container mb-3 col-sm">
-    <h3>Calendar</h3>
+  <div class="container mx-3 col-sm">
+    <h3 class="text-center">Calendar</h3>
     <div class="list-group">
       {% for event in calendar %}
-      <li href="{{ event['htmlLink'] }}" class="list-group-item list-group-item-action">
-        {{ event["summary"] }}
+      <li class="list-group-item row">
+        <form class="col form-inline" action="/remove">
+          <input type="hidden" name="event_id" value="{{ event['id'] }}">
+          <label class="col">{{ event["summary"] }}</label>
+          <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
+        </form>
       </li>
       {% endfor %}
     </div>
   </div>
-  <div class="container mb-3 col-sm">
-    <h3>Tasks</h3>
+  <div class="container mx-3 col-sm">
+    <h3 class="text-center">Tasks</h3>
     {% for taskchain in tasks %}
     {% if "items" in taskchain %}
     <div class="list-group">
       {% for task in taskchain["items"] %}
-      <a href="{{ task['selfLink'] }}" class="list-group-item list-group-item-action">
-        {{ task["title"] }}
-      </a>
+      <li href="{{ task['selfLink'] }}" class="list-group-item row">
+        <form class="col form-inline" action="/remove">
+          <input type="hidden" name="task_id" value="{{ task['id'] }}">
+          <label class="col">{{ task["title"] }}</label>
+          <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
+        </form>
+      </li>
       {% endfor %}
     </div>
     {% endif %}
     {% endfor %}
   </div>
-  <div class="container mb-3 col-sm">
-    <h3>News</h3>
+  <div class="container mx-3 col-sm">
+    <h3 class="text-center">News</h3>
     <div class="list-group">
       {% for article in news["data"]["children"] %}
       <a href="{{ article['data']['url'] }}" class="list-group-item list-group-item-action">
         {{ article["data"]["title"] }}
       </a>
       {% endfor %}
+      <form class="list-group-item text-center" action="/news">
+        <input class="btn btn-outline-primary btn-sm" type="submit" value="View More">
+      </form>
     </div>
   </div>
 </div>

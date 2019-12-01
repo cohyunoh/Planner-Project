@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 from .google_funcs import fetch_userinfo
 from urllib.request import Request, urlopen
 from flask import Blueprint, session, redirect, current_app, url_for
-from ..utl import register, google, login_check, add_user, credentials_check, check_user
+from ..utl import register, google, login_check, add_user, credentials_check, get_from_user
 
 with open("flaskr/google_inert/parameters/google_api_params.json") as g:
     params = load(g)
@@ -45,7 +45,7 @@ def auth():
         session.pop("access_token", None)
         userinfo = fetch_userinfo()
         session["user"]["email"] = userinfo["email"]
-        if not check_user(userinfo["email"]):
+        if not get_from_user(userinfo["email"], "email"):
             add_user(userinfo["name"], userinfo["email"])
             return redirect(url_for("registration"))
     return redirect(url_for("index"))

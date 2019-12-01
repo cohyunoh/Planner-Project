@@ -1,6 +1,7 @@
 """
     reddit_funcs script stores all Reddit API related functions.
 """
+from time import time
 from json import load, loads
 from ..utl import login_check
 from urllib.parse import urlencode
@@ -17,5 +18,6 @@ def get_posts(subreddit, status, limit=5):
     """
     assert session["user"]["access_token"]
     request_ = Request(REDDIT_SUBREDDIT + subreddit + "/" + status +
-                       ".json?limit=" + str(limit))
+                       ".json?limit=" + str(limit),
+                       headers={'User-agent': 'Flasky Botty 1.0'})
     return loads(urlopen(request_).read())

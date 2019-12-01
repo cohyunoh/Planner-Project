@@ -8,8 +8,3 @@ IF NOT EXISTS users
   workAddress TEXT,
   newsPreference TEXT
 );
-
-CREATE VIRTUAL TABLE
-IF NOT EXISTS savedNews
-USING FTS5
-(title, url);

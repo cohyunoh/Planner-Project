@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}News{% endblock %}
+{% block content %}
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <form action="/home" method="GET">
+      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Home</button>
+    </form>
+  </li>
+  <li class="nav-item">
+    <form action="/settings" method="GET">
+      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Settings</button>
+    </form>
+  </li>
+  <li class="nav-item">
+    <form action="/logout" method="GET">
+      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Logout</button>
+    </form>
+  </li>
+</ul>
+<div class="container my-5">
+  <div class="list-group">
+    {% for article in news["data"]["children"] %}
+    <a href="{{ article['data']['url'] }}" class="list-group-item list-group-item-action">
+      <p class="mb-1">{{ article["data"]["title"] }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

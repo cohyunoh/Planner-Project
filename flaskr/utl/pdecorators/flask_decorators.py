@@ -1,8 +1,10 @@
 """
     Custom Flask decorators
 """
+from time import time
 from os import environ
 from functools import wraps
+from ..db.user import get_from_user
 from flask import session, redirect, flash
 
 
