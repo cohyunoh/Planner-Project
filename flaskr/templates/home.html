@@ -25,29 +25,75 @@
     <p class="lead">Welcome back {{ name }}!</p>
   </div>
 </div>
+
+<!-- Data Row -->
 <div class="row mx-3">
+  <!-- Calendar Event List -->
   <div class="container mx-3 col-sm">
     <h3 class="text-center">Calendar</h3>
     <div class="list-group">
       {% for event in calendar %}
       <li class="list-group-item row">
         <form class="col form-inline" action="/remove">
+          <input type="hidden" name="google_calendar">
           <input type="hidden" name="event_id" value="{{ event['id'] }}">
           <label class="col">{{ event["summary"] }}</label>
           <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
         </form>
       </li>
       {% endfor %}
+      <li class="list-group-item row text-center">
+        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#eventModal">
+          Add an Event
+        </button>
+      </li>
     </div>
   </div>
+
+  <!-- Google Calendar Modal -->
+  <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form class="modal-content" action="/add/calendar">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Create a Calendar Event</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="google_calendar">
+          <div class="form-group">
+            <label for="eventSummary">Event Summary</label>
+            <textarea class="form-control" name="eventSummary"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="eventStart">Start</label>
+            <input type="datetime-local" class="form-control" name="eventStart">
+          </div>
+          <div class="form-group">
+            <label for="eventEnd">End</label>
+            <input type="datetime-local" class="form-control" name="eventEnd">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="Add">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Google Tasks List -->
   <div class="container mx-3 col-sm">
     <h3 class="text-center">Tasks</h3>
-    {% for taskchain in tasks %}
+    {% for tasklist_id, taskchain in zip(tasklist_ids, tasks) %}
     {% if "items" in taskchain %}
     <div class="list-group">
       {% for task in taskchain["items"] %}
       <li href="{{ task['selfLink'] }}" class="list-group-item row">
         <form class="col form-inline" action="/remove">
+          <input type="hidden" name="google_tasks">
+          <input type="hidden" name="task_list_id" value="{{ tasklist_id }}">
           <input type="hidden" name="task_id" value="{{ task['id'] }}">
           <label class="col">{{ task["title"] }}</label>
           <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
@@ -57,7 +103,43 @@
     </div>
     {% endif %}
     {% endfor %}
+    <li class="list-group-item row text-center">
+      <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#tasksModal">
+        Add a Task
+      </button>
+    </li>
   </div>
+
+  <!-- Google Tasks Modal -->
+  <div class="modal fade" id="tasksModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form class="modal-content" action="/add/tasks">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Create a Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="google_tasks">
+          <div class="form-group">
+            <label for="taskTitle">Title</label>
+            <input type="text" class="form-control" name="taskTitle">
+          </div>
+          <div class="form-group">
+            <label for="taskNotes">Notes</label>
+            <textarea class="form-control" name="taskNotes"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="Add">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- News -->
   <div class="container mx-3 col-sm">
     <h3 class="text-center">News</h3>
     <div class="list-group">

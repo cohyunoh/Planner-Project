@@ -72,3 +72,7 @@ jun taoL -- 2019-11-30 16:57
 
 jun taoL -- 2019-11-30 21:32
   Added news page and revamp design
+
+jun taoL -- 2019-12-01 01:42
+  Added Google Calendar and Tasks delete
+  Broken Google Calendar and Tasks adding functionality

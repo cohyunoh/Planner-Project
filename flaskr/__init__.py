@@ -8,13 +8,17 @@ from .reddit import get_posts
 from datetime import date, datetime
 from .utl import login_check, conn, close, change_user_settings, get_from_user
 from flask import Flask, render_template, session, redirect, url_for, g, request
-from .google_inert import GOOGLE, fetch_calendar_events, fetch_tasks, fetch_userinfo
+from .google_inert import (GOOGLE, fetch_calendar_events, fetch_tasks,
+                           fetch_userinfo, delete_calendar, delete_tasks,
+                           add_calendar_event, add_task)
 
 APP = Flask(__name__)
 
 APP.secret_key = urandom(32)
 
 APP.config.from_mapping(DATABASE="flaskr/database.db")
+
+APP.jinja_env.globals.update(zip=zip)
 
 with open("flaskr/database.db", "w+") as f:
     db = connect(APP.config["DATABASE"])
@@ -71,13 +75,15 @@ def home():
     datetime = date.today()
     name = get_from_user(session["user"]["email"], "name")
     calendar_events = fetch_calendar_events()["items"]
-    tasks = fetch_tasks()
+    tasklist_ids, tasks = fetch_tasks()
+    session["user"]["selected_tasklist_id"] = tasklist_ids[0]
     news = get_posts(get_from_user(session["user"]["email"], "newsPreference"),
                      "top", 5)
     return render_template("home.html",
                            datetime=datetime,
                            name=name,
                            calendar=calendar_events,
+                           tasklist_ids=tasklist_ids,
                            tasks=tasks,
                            news=news)
 
@@ -136,6 +142,37 @@ def news():
     news = get_posts(get_from_user(session["user"]["email"], "newsPreference"),
                      "top", 15)
     return render_template("news.html", news=news)
+
+
+@APP.route("/remove")
+@login_check
+def remove():
+    if "google_calendar" in request.args:
+        delete_calendar(request.args["event_id"])
+    if "google_tasks" in request.args:
+        delete_tasks(request.args["task_list_id"], request.args["task_id"])
+    return redirect(url_for("index"))
+
+
+@APP.route("/add/calendar")
+@APP.route("/add/tasks")
+@login_check
+def add():
+    if "google_calendar" in request.args:
+        start = {
+            "dateTime": request.args["eventStart"],
+            "timeZone": "America/New_York"
+        }
+        end = {
+            "dateTime": request.args["eventEnd"],
+            "timeZone": "America/New_York"
+        }
+        add_calendar_event(request.args["eventSummary"], start, end)
+    if "google_tasks" in request.args:
+        task_list_id = session["user"]["selected_tasklist_id"]
+        add_task(task_list_id, request.args["taskTitle"],
+                 request.args["taskNotes"])
+    return redirect(url_for("index"))
 
 
 @APP.route("/logout")
