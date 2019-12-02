@@ -1,13 +1,13 @@
 """
-    GOogle API blueprint module
+    Google API blueprint module
 """
 from copy import deepcopy
 from os import path, environ
 from json import load, loads
 from urllib.parse import urlencode
-from .google_funcs import fetch_userinfo
 from urllib.request import Request, urlopen
-from flask import Blueprint, session, redirect, current_app, url_for
+from .google_funcs import fetch_userinfo, add_calendar_event, add_task
+from flask import Blueprint, session, redirect, current_app, url_for, request
 from ..utl import register, google, login_check, add_user, credentials_check, get_from_user
 
 with open("flaskr/google_inert/parameters/google_api_params.json") as g:
@@ -48,4 +48,26 @@ def auth():
         if not get_from_user(userinfo["email"], "email"):
             add_user(userinfo["name"], userinfo["email"])
             return redirect(url_for("registration"))
+    return redirect(url_for("index"))
+
+
+@GOOGLE.route("/add/calendar")
+@GOOGLE.route("/add/tasks")
+@login_check
+def add():
+    if "google_calendar" in request.args:
+        start = {
+            'dateTime':
+            request.args['eventStart'] + request.args['timeZoneOffset'],
+            'timeZone': request.args['timeZone']
+        }
+        end = {
+            'dateTime': request.args['eventEnd'] + request.args['timeZoneOffset'],
+            'timeZone': request.args['timeZone']
+        }
+        add_calendar_event(request.args["eventSummary"], start, end)
+    if "google_tasks" in request.args:
+        task_list_id = session["user"]["selected_tasklist_id"]
+        add_task(task_list_id, request.args["taskTitle"],
+                 request.args["taskNotes"])
     return redirect(url_for("index"))

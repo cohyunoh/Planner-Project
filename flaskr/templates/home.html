@@ -26,6 +26,17 @@
   </div>
 </div>
 
+<!-- Error Flashing -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+  {% for message in messages %}
+  <li> {{ message }} </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 <!-- Data Row -->
 <div class="row mx-3">
   <!-- Calendar Event List -->
@@ -62,6 +73,8 @@
         </div>
         <div class="modal-body">
           <input type="hidden" name="google_calendar">
+          <input type="hidden" name="timeZone" id="timeZone" value="">
+          <input type="hidden" name="timeZoneOffset" id="timeZoneOffset" value="">
           <div class="form-group">
             <label for="eventSummary">Event Summary</label>
             <textarea class="form-control" name="eventSummary"></textarea>
@@ -86,28 +99,33 @@
   <!-- Google Tasks List -->
   <div class="container mx-3 col-sm">
     <h3 class="text-center">Tasks</h3>
-    {% for tasklist_id, taskchain in zip(tasklist_ids, tasks) %}
-    {% if "items" in taskchain %}
-    <div class="list-group">
-      {% for task in taskchain["items"] %}
-      <li href="{{ task['selfLink'] }}" class="list-group-item row">
-        <form class="col form-inline" action="/remove">
-          <input type="hidden" name="google_tasks">
-          <input type="hidden" name="task_list_id" value="{{ tasklist_id }}">
-          <input type="hidden" name="task_id" value="{{ task['id'] }}">
-          <label class="col">{{ task["title"] }}</label>
-          <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
-        </form>
-      </li>
-      {% endfor %}
+    <div class="list-group list-group-root">
+      {% for tasklist, taskchain in zip(tasklists_reduced, tasks) %}
+      {% if "items" in taskchain %}
+      <div class="list-group-item">
+        <label>{{ tasklist["title"] }}</label>
+        <div class="list-group">
+          {% for task in taskchain["items"] %}
+          <li href="{{ task['selfLink'] }}" class="list-group-item row">
+            <form class="col form-inline" action="/remove">
+              <input type="hidden" name="google_tasks">
+              <input type="hidden" name="task_list_id" value="{{ tasklist['id'] }}">
+              <input type="hidden" name="task_id" value="{{ task['id'] }}">
+              <label class="col">{{ task["title"] }}</label>
+              <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
+            </form>
+          </li>
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="list-group-item text-center">
+        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#tasksModal">
+          Add a Task
+        </button>
+      </div>
     </div>
-    {% endif %}
-    {% endfor %}
-    <li class="list-group-item row text-center">
-      <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#tasksModal">
-        Add a Task
-      </button>
-    </li>
   </div>
 
   <!-- Google Tasks Modal -->
@@ -154,4 +172,10 @@
     </div>
   </div>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+  document.getElementById("timeZone").value = Intl.DateTimeFormat().resolvedOptions().timeZone
+  document.getElementById("timeZoneOffset").value = ":00" + new Date().toString().split(" ")[5].substring(3).slice(0, 3) + ":" + new Date().toString().split(" ")[5].substring(3).slice(3)
+</script>
 {% endblock %}
