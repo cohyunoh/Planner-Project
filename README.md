@@ -13,7 +13,7 @@ We are making a website that acts as a planner you look at every morning to get 
 * Shows top posts on from a Reddit subreddit, default to a news related subreddit
 * Shows your commute and what traffic lies ahead
 
-## APIS Used:
+## APIs Used:
 * Google Calender API: https://docs.google.com/document/d/1atMCAui86AwBSWEz8lCIJFaNkUL4V5fwVecNcnxSpP0/edit
 * Google Tasks API: https://docs.google.com/document/d/1AxGWZziRmWGfXmMuuxaUzVqP4-9Cn9GkN3X8Qn-0888/edit#
 * Google Maps Embedded API: https://docs.google.com/document/d/1BrK8KIi1jxdETaGoEcuEB_UDiGwZhFFeWxZ_dlwiFww/edit#heading=h.gkfplvc4i8hr
@@ -41,17 +41,25 @@ We are making a website that acts as a planner you look at every morning to get 
 ```
 7. Set the following environment variables. Be sure to use the following format for the correct operating systems. Replace "your_client_id" with the correct OAuth client ID, and replace "your_client_secret" with the corresponding client secret.
 ```
-{
-  For POSIX
-  ---------
-  export GOOGLE_CLIENT_ID="your_client_id"
-  export GOOGLE_CLIENT_SECRET="your_client_secret"
+For POSIX
+---------
+export GOOGLE_CLIENT_ID="your_client_id"
+export GOOGLE_CLIENT_SECRET="your_client_secret"
 
-  For Windows
-  -----------
-  set GOOGLE_CLIENT_ID="your_client_id"
-  set GOOGLE_CLIENT_SECRET="your_client_secret"
-}
+For Windows
+-----------
+set GOOGLE_CLIENT_ID="your_client_id"
+set GOOGLE_CLIENT_SECRET="your_client_secret"
+```
+8. Navigate to the Credentials section. Create an API key. Restrict the API key to only work on Maps Embed API. Set Website Restriction to `http://localhost:5000/home`. Set the following environment variable using this API key.
+```
+For POSIX
+---------
+export MAPS_EMBED_API_KEY="your_maps_embed_api_key"
+
+For Windows
+-----------
+set MAPS_EMBED_API_KEY="your_maps_embed_api_key"
 ```
 
 
