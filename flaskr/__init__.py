@@ -1,9 +1,9 @@
 """
     Initialize a Flask instance
 """
-from os import urandom
 from time import sleep
 from sqlite3 import connect
+from os import urandom, environ
 from datetime import date, datetime
 from .reddit import get_posts, REDDIT
 from .utl import login_check, conn, close, change_user_settings, get_from_user
@@ -78,13 +78,22 @@ def home():
     tasklists_reduced, tasks = fetch_tasks()
     news = get_posts(get_from_user(session["user"]["email"], "newsPreference"),
                      "top", 5)
+    home_address = "+".join(
+        get_from_user(session["user"]["email"], "homeAddress").split(","))
+    work_address = "+".join(
+        get_from_user(session["user"]["email"], "workAddress").split(","))
+    if len(home_address) > 0 and len(work_address) > 0:
+        iframe_src = "https://www.google.com/maps/embed/v1/directions?key=%s&origin=%s&destination=%s&mode=transit" % (
+            environ.get("MAPS_EMBED_API_KEY", ""), home_address, work_address)
+        iframe_src.encode()
     return render_template("home.html",
                            datetime=datetime,
                            name=name,
                            calendar=calendar_events,
                            tasklists_reduced=tasklists_reduced,
                            tasks=tasks,
-                           news=news)
+                           news=news,
+                           iframe_src=iframe_src)
 
 
 @APP.route("/settings")
