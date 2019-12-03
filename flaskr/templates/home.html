@@ -20,9 +20,17 @@
 </ul>
 <div class="jumbotron jumbotron-fluid mt-3">
   <div class="container">
-    <h1 class="display-4">Today is {{ datetime.strftime("%Y-%m-%d") }}</h1>
+    <h3 class="display-5 d-flex">
+      <span class="text-muted">Welcome back, {{ name }}.</span>
+      <span class="ml-auto text-muted"> {{ datetime.strftime("%B %d, %Y") }}</span>
+    </h3>
     <hr class="my-4">
-    <p class="lead">Welcome back {{ name }}!</p>
+    <!-- Maps iframe -->
+    {% if iframe_src %}
+    <div class="card">
+      <iframe class="rounded-sm" height="450" frameborder="0" src="{{ iframe_src }}"></iframe>
+    </div>
+    {% endif %}
   </div>
 </div>
 
@@ -38,10 +46,10 @@
 {% endwith %}
 
 <!-- Data Row -->
-<div class="row mx-3">
+<div class="row mx-3 mb-5">
   <!-- Calendar Event List -->
-  <div class="container mx-3 col-sm">
-    <h3 class="text-center">Calendar</h3>
+  <div class="container mx-3 col-sm mb-5">
+    <h3 class="text-center text-muted">Calendar</h3>
     <div class="list-group border-bottom-0">
       {% for event in calendar %}
       <li class="list-group-item py-3">
@@ -82,15 +90,15 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <form class="modal-content" action="/add/calendar">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Create a Calendar Event</h5>
+          <h5 class="modal-title">Create a Calendar Event</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <input type="hidden" name="google_calendar">
-          <input type="hidden" name="timeZone" id="timeZone" value="">
-          <input type="hidden" name="timeZoneOffset" id="timeZoneOffset" value="">
+          <input type="hidden" name="timeZone" id="timeZone">
+          <input type="hidden" name="timeZoneOffset" id="timeZoneOffset">
           <div class="form-group">
             <label for="eventSummary">Event Title</label>
             <input type="text" class="form-control" name="eventSummary">
@@ -117,8 +125,8 @@
   </div>
 
   <!-- Google Tasks List -->
-  <div class="container mx-3 col-sm">
-    <h3 class="text-center">Tasks</h3>
+  <div class="container mx-3 col-sm mb-5">
+    <h3 class="text-center text-muted">Tasks</h3>
     <div class="list-group">
       {% for tasklist, taskchain in zip(tasklists_reduced, tasks) %}
       {% if "items" in taskchain %}
@@ -225,8 +233,8 @@
   </div>
 
   <!-- News -->
-  <div class="container mx-3 col-sm">
-    <h3 class="text-center">News</h3>
+  <div class="container mx-3 col-sm mb-5">
+    <h3 class="text-center text-muted">News</h3>
     <div class="list-group">
       {% for article in news["data"]["children"] %}
       <a href="{{ article['data']['url'] }}" class="list-group-item list-group-item-action">
@@ -240,15 +248,11 @@
   </div>
 </div>
 
-<!-- Maps iframe -->
-{% if iframe_src %}
-<iframe width="600" height="450" frameborder="0" style="border:0" src="{{ iframe_src }}"></iframe>
-{% endif %}
 {% endblock %}
 {% block script %}
 <script>
-  document.getElementById(" timeZone").value = Intl.DateTimeFormat().resolvedOptions().timeZone
+  document.getElementById("timeZone").value = Intl.DateTimeFormat().resolvedOptions().timeZone
   document.getElementById("timeZoneOffset").value = ":00" + new
-    Date().toString().split(" ")[5].substring(3).slice(0, 3) + " :" + new Date().toString().split(" ")[5].substring(3).slice(3)
+    Date().toString().split(" ")[5].substring(3).slice(0, 3) + ":" + new Date().toString().split(" ")[5].substring(3).slice(3)
 </script>
 {% endblock %}

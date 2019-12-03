@@ -78,6 +78,7 @@ def add_calendar_event(summary, description, start, end, calendarId="primary"):
                     data=dumps(data).encode(),
                     method="POST"))
     except URLError as e:
+        print(e.read())
         flash(e.reason)
 
 
