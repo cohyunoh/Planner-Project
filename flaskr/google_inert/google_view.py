@@ -6,8 +6,8 @@ from os import path, environ
 from json import load, loads
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
-from .google_funcs import fetch_userinfo, add_calendar_event, add_task
 from flask import Blueprint, session, redirect, current_app, url_for, request
+from .google_funcs import fetch_userinfo, add_calendar_event, add_task, add_task_list
 from ..utl import register, google, login_check, add_user, credentials_check, get_from_user
 
 with open("flaskr/google_inert/parameters/google_api_params.json") as g:
@@ -37,8 +37,6 @@ def auth():
         wrapper to register the OAuth connection object for
         authentication.
     """
-    global GOOGLE_AUTH
-    del GOOGLE_AUTH
     if "access_token" in session:
         session["user"] = {
             "access_token": session["access_token"],
@@ -68,9 +66,12 @@ def add():
             request.args['eventEnd'] + request.args['timeZoneOffset'],
             'timeZone': request.args['timeZone']
         }
-        add_calendar_event(request.args["eventSummary"], start, end)
+        add_calendar_event(request.args["eventSummary"],
+                           request.args["eventDescription"], start, end)
     if "google_tasks" in request.args:
         task_list_id = request.args["task_list_id"]
         add_task(task_list_id, request.args["task_title"],
                  request.args["task_notes"])
+    if "google_task_list" in request.args:
+        add_task_list(request.args["task_list_title"])
     return redirect(url_for("index"))
