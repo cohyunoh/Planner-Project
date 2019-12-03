@@ -138,6 +138,9 @@ def change_settings():
 @APP.route("/remove")
 @login_check
 def remove():
+    '''
+        Removes tasks and events from the calendar and task lists
+    '''
     if "google_calendar" in request.args:
         delete_calendar(request.args["event_id"])
     if "google_tasks" in request.args:
