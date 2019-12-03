@@ -42,22 +42,38 @@
   <!-- Calendar Event List -->
   <div class="container mx-3 col-sm">
     <h3 class="text-center">Calendar</h3>
-    <div class="list-group">
+    <div class="list-group border-bottom-0">
       {% for event in calendar %}
-      <li class="list-group-item border-bottom-0">
-        <form class="col form-inline" action="/remove">
-          <input type="hidden" name="google_calendar">
-          <input type="hidden" name="event_id" value="{{ event['id'] }}">
-          <label class="col">{{ event["summary"] }}</label>
-          <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
-        </form>
+      <li class="list-group-item py-3">
+        <div class="card py-0">
+          <div class="card-body">
+            <h5 class="card-title">
+              <form class="col form-inline" action="/remove">
+                <input type="hidden" name="google_calendar">
+                <input type="hidden" name="event_id" value="{{ event['id'] }}">
+                <label class="col">{{ event["summary"] }}</label>
+                <button type="submit" class="btn btn-outline-primary btn-sm">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </form>
+            </h5>
+            <p class="card-text">{{ event["description"] }}</p>
+            <p class="card-text">
+              <small>
+                {{ event["start"]["dateTime"][:-9].replace("T", " ") }}
+                <i class="fas fa-arrow-right"></i>
+                {{ event["end"]["dateTime"][:-9].replace("T", " ") }}.
+              </small>
+            </p>
+          </div>
+        </div>
       </li>
       {% endfor %}
-      <li class="list-group-item text-center">
-        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#eventModal">
-          Add an Event
+      <div class="list-group-item d-flex justify-content-end">
+        <button type="button" class="btn btn-outline-primary btn-sm mt-1" data-toggle="modal" data-target="#eventModal">
+          <i class="fas fa-plus"></i>
         </button>
-      </li>
+      </div>
     </div>
   </div>
 
@@ -76,8 +92,12 @@
           <input type="hidden" name="timeZone" id="timeZone" value="">
           <input type="hidden" name="timeZoneOffset" id="timeZoneOffset" value="">
           <div class="form-group">
-            <label for="eventSummary">Event Summary</label>
-            <textarea class="form-control" name="eventSummary"></textarea>
+            <label for="eventSummary">Event Title</label>
+            <input type="text" class="form-control" name="eventSummary">
+          </div>
+          <div class="form-group">
+            <label for="eventDescription">Event Description</label>
+            <textarea class="form-control" name="eventDescription"></textarea>
           </div>
           <div class="form-group">
             <label for="eventStart">Start</label>
@@ -103,28 +123,67 @@
       {% for tasklist, taskchain in zip(tasklists_reduced, tasks) %}
       {% if "items" in taskchain %}
       <div class="list-group-item border-bottom-0">
-        <label>{{ tasklist["title"] }}</label>
-        <div class="list-group">
+        <h6 class="text-muted">{{ tasklist["title"] }}</h6>
+        <div class="list-group px-3 py-1">
           {% for task in taskchain["items"] %}
-          <li href="{{ task['selfLink'] }}" class="list-group-item row">
+          <li href="{{ task['selfLink'] }}" class="list-group-item row px-0">
             <form class="col form-inline" action="/remove">
               <input type="hidden" name="google_tasks">
               <input type="hidden" name="task_list_id" value="{{ tasklist['id'] }}">
               <input type="hidden" name="task_id" value="{{ task['id'] }}">
               <label class="col">{{ task["title"] }}</label>
-              <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete">
+              <button type="submit" class="btn btn-outline-primary btn-sm">
+                <i class="far fa-trash-alt"></i>
+              </button>
             </form>
+            {% if task["notes"] %}
+            <div class="card m-3">
+              <div class="card-body">
+                <p class="card-text">{{ task["notes"] }}</p>
+              </div>
+            </div>
+            {% endif %}
           </li>
           {% endfor %}
         </div>
       </div>
       {% endif %}
       {% endfor %}
-      <div class="list-group-item text-center">
-        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#tasksModal">
-          Add a Task
-        </button>
-      </div>
+    </div>
+    <div class="list-group-item d-flex">
+      <button type="button" class="btn btn-outline-primary btn-sm mt-1 justify-content-start" data-toggle="modal"
+        data-target="#tasklistModal">
+        <i class="fas fa-list-ul"></i>
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm mt-1 ml-auto" data-toggle="modal"
+        data-target="#tasksModal">
+        <i class="fas fa-clipboard-list"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Google Tasks Tasklist Modal -->
+  <div class="modal fade" id="tasklistModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form class="modal-content" action="/add/tasks">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Create a Tasklist</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="google_task_list">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" name="task_list_title">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="Add">
+        </div>
+      </form>
     </div>
   </div>
 

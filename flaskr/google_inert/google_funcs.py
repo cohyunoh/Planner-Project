@@ -56,14 +56,19 @@ def delete_calendar(eventId, calendarId="primary"):
 
 
 @login_check
-def add_calendar_event(summary, start, end, calendarId="primary"):
+def add_calendar_event(summary, description, start, end, calendarId="primary"):
     """
         Add Google Calendar event
     """
     assert session["user"]["access_token"]
     google_calendar_endpoint = params["google_calendar"]["endpoint"]
     token = session["user"]["access_token"]
-    data = {'summary': summary, 'start': start, 'end': end}
+    data = {
+        'summary': summary,
+        'description': description,
+        'start': start,
+        'end': end
+    }
     print(data)
     try:
         urlopen(
@@ -139,6 +144,26 @@ def add_task(tasklistId, title, notes):
         urlopen(
             Request(google_tasks_endpoint + "/lists/" + tasklistId + "/tasks" +
                     "?access_token=" + token,
+                    headers={"Content-Type": "application/json"},
+                    data=dumps(data).encode(),
+                    method="POST"))
+    except URLError as e:
+        flash(e.reason)
+
+
+@login_check
+def add_task_list(title):
+    """
+        Add a task list for the user
+    """
+    assert session["user"]["access_token"]
+    google_tasks_endpoint = params["google_tasks"]["endpoint"]
+    token = session["user"]["access_token"]
+    data = {"title": title}
+    try:
+        urlopen(
+            Request(google_tasks_endpoint + "/users/@me/lists?access_token=" +
+                    token,
                     headers={"Content-Type": "application/json"},
                     data=dumps(data).encode(),
                     method="POST"))
