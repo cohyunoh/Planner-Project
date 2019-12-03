@@ -37,6 +37,8 @@ def auth():
         wrapper to register the OAuth connection object for
         authentication.
     """
+    global GOOGLE_AUTH
+    del GOOGLE_AUTH
     if "access_token" in session:
         session["user"] = {
             "access_token": session["access_token"],
@@ -62,12 +64,13 @@ def add():
             'timeZone': request.args['timeZone']
         }
         end = {
-            'dateTime': request.args['eventEnd'] + request.args['timeZoneOffset'],
+            'dateTime':
+            request.args['eventEnd'] + request.args['timeZoneOffset'],
             'timeZone': request.args['timeZone']
         }
         add_calendar_event(request.args["eventSummary"], start, end)
     if "google_tasks" in request.args:
-        task_list_id = session["user"]["selected_tasklist_id"]
-        add_task(task_list_id, request.args["taskTitle"],
-                 request.args["taskNotes"])
+        task_list_id = request.args["task_list_id"]
+        add_task(task_list_id, request.args["task_title"],
+                 request.args["task_notes"])
     return redirect(url_for("index"))

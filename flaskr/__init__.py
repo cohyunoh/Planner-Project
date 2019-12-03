@@ -76,7 +76,6 @@ def home():
     name = get_from_user(session["user"]["email"], "name")
     calendar_events = fetch_calendar_events()["items"]
     tasklists_reduced, tasks = fetch_tasks()
-    session["user"]["selected_tasklist_id"] = tasklists_reduced[0]["id"]
     news = get_posts(get_from_user(session["user"]["email"], "newsPreference"),
                      "top", 5)
     return render_template("home.html",

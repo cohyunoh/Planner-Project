@@ -134,16 +134,14 @@ def add_task(tasklistId, title, notes):
     assert session["user"]["access_token"]
     google_tasks_endpoint = params["google_tasks"]["endpoint"]
     token = session["user"]["access_token"]
-    data = urlencode({"title": title, "notes": notes}).encode()
+    data = {"title": title, "notes": notes}
     try:
         urlopen(
             Request(google_tasks_endpoint + "/lists/" + tasklistId + "/tasks" +
                     "?access_token=" + token,
-                    data=data,
-                    headers={
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token,
-                    },
+                    headers={"Content-Type": "application/json"},
+                    data=dumps(data).encode(),
                     method="POST"))
     except URLError as e:
+        print(e.read().decode("utf8", 'ignore'))
         flash(e.reason)

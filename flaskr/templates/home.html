@@ -44,7 +44,7 @@
     <h3 class="text-center">Calendar</h3>
     <div class="list-group">
       {% for event in calendar %}
-      <li class="list-group-item row">
+      <li class="list-group-item border-bottom-0">
         <form class="col form-inline" action="/remove">
           <input type="hidden" name="google_calendar">
           <input type="hidden" name="event_id" value="{{ event['id'] }}">
@@ -53,7 +53,7 @@
         </form>
       </li>
       {% endfor %}
-      <li class="list-group-item row text-center">
+      <li class="list-group-item text-center">
         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#eventModal">
           Add an Event
         </button>
@@ -99,10 +99,10 @@
   <!-- Google Tasks List -->
   <div class="container mx-3 col-sm">
     <h3 class="text-center">Tasks</h3>
-    <div class="list-group list-group-root">
+    <div class="list-group">
       {% for tasklist, taskchain in zip(tasklists_reduced, tasks) %}
       {% if "items" in taskchain %}
-      <div class="list-group-item">
+      <div class="list-group-item border-bottom-0">
         <label>{{ tasklist["title"] }}</label>
         <div class="list-group">
           {% for task in taskchain["items"] %}
@@ -116,10 +116,10 @@
             </form>
           </li>
           {% endfor %}
-          {% endif %}
-          {% endfor %}
         </div>
       </div>
+      {% endif %}
+      {% endfor %}
       <div class="list-group-item text-center">
         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#tasksModal">
           Add a Task
@@ -140,13 +140,21 @@
         </div>
         <div class="modal-body">
           <input type="hidden" name="google_tasks">
+          <input type="hidden" name="tasklist_id" value="">
           <div class="form-group">
-            <label for="taskTitle">Title</label>
-            <input type="text" class="form-control" name="taskTitle">
+            <select name="task_list_id" class="form-control border-primary text-primary">
+              {% for tasklist in tasklists_reduced %}
+              <option value="{{ tasklist['id'] }}">{{ tasklist["title"] }}</option>
+              {% endfor %}
+            </select>
           </div>
           <div class="form-group">
-            <label for="taskNotes">Notes</label>
-            <textarea class="form-control" name="taskNotes"></textarea>
+            <label>Title</label>
+            <input type="text" class="form-control" name="task_title">
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea class="form-control" name="task_notes"></textarea>
           </div>
         </div>
         <div class="modal-footer">
