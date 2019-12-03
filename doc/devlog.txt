@@ -76,3 +76,10 @@ jun taoL -- 2019-11-30 21:32
 jun taoL -- 2019-12-01 01:42
   Added Google Calendar and Tasks delete
   Broken Google Calendar and Tasks adding functionality
+  
+leiaP -- 2019-12-03 00:18
+  Updated design doc:
+    - Components map shows more accurate and fuller depiction of project
+    - Revised site map
+    - Specified more on features and functions of webpages
+    - Added newsfeed page and related details
