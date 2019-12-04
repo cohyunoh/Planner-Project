@@ -20,6 +20,30 @@
 </ul>
 <div class="container my-5">
   <div class="list-group">
+    <li class="list-group-item">
+      <div class="dropdown d-flex justify-content-end">
+        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+          Sort
+        </button>
+        <div class="dropdown-menu">
+          <form action="/reddit/sort">
+            <input class="dropdown-item" type="submit" name="sortBy" value="Top">
+          </form>
+          <form action="/reddit/sort">
+            <input class="dropdown-item" type="submit" name="sortBy" value="Hot">
+          </form>
+          <form action="/reddit/sort">
+            <input class="dropdown-item" type="submit" name="sortBy" value="New">
+          </form>
+          <form action="/reddit/sort">
+            <input class="dropdown-item" type="submit" name="sortBy" value="Rising">
+          </form>
+          <form action="/reddit/sort">
+            <input class="dropdown-item" type="submit" name="sortBy" value="Controversial">
+          </form>
+        </div>
+      </div>
+    </li>
     {% for article in news["data"]["children"] %}
     <a href="{{ article['data']['url'] }}" class="list-group-item list-group-item-action">
       <p class="mb-1">{{ article["data"]["title"] }}</p>
@@ -27,4 +51,5 @@
     {% endfor %}
   </div>
 </div>
+<br>
 {% endblock %}
