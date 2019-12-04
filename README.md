@@ -75,7 +75,7 @@ git clone https://github.com/cohyunoh/Planner-Project.git
 cd Planner-Project
 ```
 
-### 3. Pull from GitHub Submodule
+### 3. Pull from GitHub Submodule dependency
 ```
 git submodule update --init --recursive
 ```
