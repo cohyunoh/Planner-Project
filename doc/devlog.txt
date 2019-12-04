@@ -83,3 +83,9 @@ leiaP -- 2019-12-03 00:18
     - Revised site map
     - Specified more on features and functions of webpages
     - Added newsfeed page and related details
+
+jun taoL -- 2019-12-03 23:37
+  Revised templates:
+    - Add sort button
+    - Fix padding and margin issue
+  General bug check and add label for form
