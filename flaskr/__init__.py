@@ -83,7 +83,7 @@ def home():
     work_address = "+".join(
         get_from_user(session["user"]["email"], "workAddress").split(","))
     if len(home_address) > 0 and len(work_address) > 0:
-        iframe_src = "https://www.google.com/maps/embed/v1/directions?key=%s&origin=%s&destination=%s&mode=transit" % (
+        iframe_src = "https://www.google.com/maps/embed/v1/directions?key=%s&origin=%s&destination=%s" % (
             environ.get("MAPS_EMBED_API_KEY", ""), home_address, work_address)
         iframe_src.encode()
     return render_template("home.html",
