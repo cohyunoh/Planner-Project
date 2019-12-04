@@ -70,29 +70,38 @@ set MAPS_EMBED_API_KEY="your_maps_embed_api_key"
 git clone https://github.com/cohyunoh/Planner-Project.git
 ```
 
-### 2. Pull from GitHub Submodule
+### 2. Navigate into Planner-Project
 ```
 cd Planner-Project
+```
+
+### 3. Pull from GitHub Submodule
+```
 git submodule update --init --recursive
 ```
 
-### 3. Activate your virtual environment
+### 4. Make a virtual environment
+```
+python3 -m venv venv
+```
+
+### 5. Activate your virtual environment
 ```
 python3 -m venv venv
 . venv/bin/activate
 ```
 
-### 4. Install the necessary packages outlined in requirements.txt
+### 6. Install the necessary packages outlined in requirements.txt
 ```
 pip3 install -r requirements.txt
 ```
 
-### 5. Run the Flask app
+### 7. Run the Flask app
 ```
 python3 run.py
 ```
 
-### 6. Update from GitHub Submodule if needed
+### (8?). Update from GitHub Submodule if needed
 ```
 git submodule update --recursive --remote
 ```
